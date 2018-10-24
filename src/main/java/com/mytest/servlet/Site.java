@@ -16,9 +16,10 @@ import java.io.PrintWriter;
 public class Site extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException
     {
-        request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-
+        String name =request.getParameter("name");
+        System.out.println(name);
         InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -27,10 +28,9 @@ public class Site extends HttpServlet{
         com.mytest.domains.Site site = new com.mytest.domains.Site();
         site.setName(request.getParameter("name"));
         site.setUrl(request.getParameter("url"));
-
-        int id = siteMapper.insertSite(site);
-
-        PrintWriter out = response.getWriter();
-        out.println("新增 id：" + id);
+        System.out.println(site);
+        siteMapper.insertSite(site);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }

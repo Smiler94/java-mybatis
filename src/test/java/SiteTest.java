@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class SiteTest {
     public SqlSessionFactory getSqlSessionFactory() throws IOException
@@ -37,9 +38,18 @@ public class SiteTest {
         Site site = new Site();
         site.setName("百度");
         site.setUrl("www.baidu.com");
-        int id = siteMapper.insertSite(site);
+        siteMapper.insertSite(site);
+        sqlSession.close();
+    }
 
-        System.out.println("新增 id：" + id);
+    @Test
+    public void getAllSitesTest() throws IOException
+    {
+        SqlSession sqlSession = getSqlSessionFactory().openSession();
+        com.mytest.mappers.Site siteMapper = sqlSession.getMapper(com.mytest.mappers.Site.class);
+        List<Site> sites = siteMapper.getAllSites();
+
+        System.out.println(sites);
         sqlSession.close();
     }
 }

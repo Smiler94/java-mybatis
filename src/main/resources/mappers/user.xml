@@ -7,4 +7,12 @@
     <select id="findUserById" parameterType="long" resultType="user">
         SELECT * from user where id = #{value}
     </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" parameterType="user">
+        INSERT INTO user (name, age) values (#{name}, #{age})
+    </insert>
+
+    <select id="getAllUsers" resultType="user">
+        SELECT * from user
+    </select>
 </mapper>

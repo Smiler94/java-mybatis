@@ -1,6 +1,15 @@
 package com.mytest.domains;
 
 public class User {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     private long id;
 
     private String name;
