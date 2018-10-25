@@ -8,6 +8,9 @@
     <typeAliases>
         <typeAlias type="com.mytest.domains.User"/>
         <typeAlias type="com.mytest.domains.Site"/>
+        <typeAlias type="com.mytest.domains.Post"/>
+        <typeAlias type="com.mytest.domains.Group"/>
+        <typeAlias type="com.mytest.domains.UserGroup"/>
         <package name="com.mytest.domains"/>
     </typeAliases>
 
@@ -30,7 +33,8 @@
         <!--通过 resource方法一次加载一个映射文件-->
         <!--注意这里的路径和 xml 文件-->
         <mapper resource="mappers/user.xml"/>
-
+        <mapper resource="mappers/group.xml"/>
+        <mapper resource="mappers/user_group.xml"/>
         <mapper class="com.mytest.mappers.Site"/>
 
     </mappers>

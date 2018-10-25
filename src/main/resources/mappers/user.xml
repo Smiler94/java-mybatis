@@ -15,4 +15,37 @@
     <select id="getAllUsers" resultType="user">
         SELECT * from user
     </select>
+
+    <resultMap type="User" id="resultUserMap">
+        <result property="id" column="user_id"/>
+        <result property="name" column="name"/>
+        <collection property="posts" ofType="com.mytest.domains.Post" column="user_id">
+            <id property="id" column="post_id" javaType="long" jdbcType="INTEGER"/>
+            <result property="title" column="title" javaType="String" jdbcType="VARCHAR"/>
+            <result property="content" column="content" javaType="String" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="getUser" resultMap="resultUserMap" parameterType="long">
+        SELECT u.*,p.*
+        FROM user u,post p
+        WHERE u.id=p.user_id AND u.id=#{user_id}
+    </select>
+
+    <resultMap type="Post" id="resultPostMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <association property="user" javaType="User">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="age" column="age"/>
+        </association>
+    </resultMap>
+
+    <select id="getPost" resultMap="resultPostMap" parameterType="long">
+        SELECT u.*,p.*
+        From user u,post p
+        where u.id=p.user_id and p.id=#{post_id}
+    </select>
 </mapper>

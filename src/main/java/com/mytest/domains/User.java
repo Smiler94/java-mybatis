@@ -1,6 +1,9 @@
 package com.mytest.domains;
 
-public class User {
+import java.io.Serializable;
+import java.util.List;
+
+public class User implements Serializable{
     @Override
     public String toString() {
         return "User{" +
@@ -15,6 +18,10 @@ public class User {
     private String name;
 
     private int age;
+
+    private List<Post> posts;
+
+    private List<Group> groups;
 
     public long getId()
     {
@@ -46,4 +53,19 @@ public class User {
         this.age = age;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 }

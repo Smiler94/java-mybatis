@@ -1,3 +1,4 @@
+import com.mytest.domains.Post;
 import com.mytest.domains.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -20,8 +21,8 @@ public class UserTest {
     @Test
     public void findUserByIdTest() throws IOException {
         SqlSession sqlSession = this.getSqlSessionFactory().openSession();
-
-        User user = sqlSession.selectOne("test.findUserById", 1);
+        long id = 1;
+        User user = sqlSession.selectOne("test.findUserById", id);
         System.out.println(user.getId());
         System.out.println(user.getName());
         System.out.println(user.getAge());
@@ -49,5 +50,23 @@ public class UserTest {
 
         sqlSession.close();
         System.out.println(users);
+    }
+
+    @Test
+    public void getUserTest() throws IOException
+    {
+        SqlSession sqlSession = this.getSqlSessionFactory().openSession();
+
+        long id = 1;
+        User user = sqlSession.selectOne("test.getUser", id);
+
+        System.out.println(user);
+        List<Post> posts = user.getPosts();
+        for(Post p : posts) {
+            System.out.println("Title :" + p.getTitle());
+            System.out.println("Content :" + p.getContent());
+        }
+
+        sqlSession.close();
     }
 }
