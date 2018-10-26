@@ -74,4 +74,35 @@ public class UserTest {
         }
         sqlSession.close();
     }
+
+    @Test
+    public void getUserListTest() throws IOException
+    {
+        SqlSession sqlSession = this.getSqlSessionFactory().openSession();
+
+        User user = new User();
+        user.setName("zhan");
+        user.setAge(12);
+
+        List<User> users = sqlSession.selectList("test.getUserList", user);
+
+        System.out.println(users);
+        sqlSession.close();
+    }
+
+    @Test
+    public void getUserListNameNullTest() throws IOException
+    {
+        SqlSession sqlSession = this.getSqlSessionFactory().openSession();
+
+        User user = new User();
+        user.setName(null); // 名字为 null 时，会导致 SQL 错误
+        user.setAge(12);
+
+//        List<User> users = sqlSession.selectList("test.getUserList", user);
+        // 使用 where 标签解决这个问题，可以自动略去开头的 AND 或者 OR
+        List<User> users = sqlSession.selectList("test.getUserListByWhere", user);
+        System.out.println(users);
+        sqlSession.close();
+    }
 }

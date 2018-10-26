@@ -49,4 +49,33 @@
         From user u,post p
         where u.id=p.user_id and p.id=#{post_id}
     </select>
+
+    <select id="getUserList" resultType="user" parameterType="com.mytest.domains.User">
+        Select * from user
+        WHERE
+        <if test="name != null">
+            name like concat(#{name, jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="sex != null and sex != 0">
+            and sex = #{sex,jdbcType=INTEGER}
+        </if>
+        <if test="age != 0">
+            and age > #{age,jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="getUserListByWhere" resultType="user" parameterType="com.mytest.domains.User">
+        SELECT * FROM USER
+        <where>
+            <if test="name != null">
+                name like concat(#{name, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="sex != null and sex != 0">
+                and sex = #{sex,jdbcType=INTEGER}
+            </if>
+            <if test="age != 0">
+                and age > #{age,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>

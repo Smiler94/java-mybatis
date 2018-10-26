@@ -19,6 +19,8 @@ public class User implements Serializable{
 
     private int age;
 
+    private int sex;
+
     private List<Post> posts;
 
     private List<Group> groups;
@@ -67,5 +69,13 @@ public class User implements Serializable{
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }
