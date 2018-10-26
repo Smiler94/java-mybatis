@@ -1,3 +1,4 @@
+import com.mytest.domains.Group;
 import com.mytest.domains.Post;
 import com.mytest.domains.User;
 import org.apache.ibatis.io.Resources;
@@ -66,7 +67,11 @@ public class UserTest {
             System.out.println("Title :" + p.getTitle());
             System.out.println("Content :" + p.getContent());
         }
-
+        List<Group> groups = user.getGroups();
+        for(Group g : groups) {
+            System.out.println("Id : "+g.getId());
+            System.out.println("Name : " + g.getName());
+        }
         sqlSession.close();
     }
 }

@@ -11,6 +11,6 @@
     </resultMap>
 
     <select id="getGroup" resultMap="resultGroupMap" parameterType="long">
-        select * from group where id=#{id}
+        select * from `group` where id=#{id}
     </select>
 </mapper>

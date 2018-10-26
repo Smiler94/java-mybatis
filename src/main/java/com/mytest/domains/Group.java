@@ -9,6 +9,15 @@ public class Group {
 
     private List<User> users;
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", users=" + users +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

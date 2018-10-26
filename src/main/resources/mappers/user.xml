@@ -24,6 +24,7 @@
             <result property="title" column="title" javaType="String" jdbcType="VARCHAR"/>
             <result property="content" column="content" javaType="String" jdbcType="VARCHAR"/>
         </collection>
+        <collection property="groups" column="id" select="getGroupsByUserId"/>
     </resultMap>
 
     <select id="getUser" resultMap="resultUserMap" parameterType="long">

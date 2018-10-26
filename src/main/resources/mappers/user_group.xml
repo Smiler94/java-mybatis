@@ -21,7 +21,7 @@
     </resultMap>
     <select id="getGroupsByUserId" parameterType="long" resultMap="resultGroupsMap">
         select g.*,ug.group_id
-        from group g,user_group ug
+        from `group` g,user_group ug
         where g.id=ug.group_id and ug.user_id=#{user_id}
     </select>
 </mapper>
