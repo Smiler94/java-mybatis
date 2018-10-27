@@ -78,4 +78,20 @@
             </if>
         </where>
     </select>
+
+    <update id="updateUser" parameterType="com.mytest.domains.User">
+        update user
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex!=null and sex != 0">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="age !=null and age != 0">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
 </mapper>

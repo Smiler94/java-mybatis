@@ -105,4 +105,19 @@ public class UserTest {
         System.out.println(users);
         sqlSession.close();
     }
+
+    @Test
+    public void updateUserTest() throws IOException
+    {
+        SqlSession sqlSession = this.getSqlSessionFactory().openSession();
+
+        long id = 1;
+        User user = sqlSession.selectOne("test.findUserById", id);
+
+        user.setSex(1);
+        int res = sqlSession.update("test.updateUser", user);
+        System.out.println(res);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }
