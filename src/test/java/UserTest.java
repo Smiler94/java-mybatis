@@ -120,4 +120,18 @@ public class UserTest {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void getChooseTest() throws IOException
+    {
+        SqlSession sqlSession = this.getSqlSessionFactory().openSession();
+
+        User user = new User();
+        user.setName("to");
+        user.setSex(2);
+        List<User> users = sqlSession.selectList("test.getUserChoose", user);
+
+        System.out.println(users);
+        sqlSession.close();
+    }
 }

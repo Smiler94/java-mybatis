@@ -10,6 +10,7 @@ public class User implements Serializable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", sex=" + sex +
                 '}';
     }
 

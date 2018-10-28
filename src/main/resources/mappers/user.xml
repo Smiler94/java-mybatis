@@ -94,4 +94,18 @@
         </set>
         WHERE id=#{id}
     </update>
+
+    <select id="getUserChoose" resultType="user" parameterType="com.mytest.domains.User">
+        select * from USER
+        <where>
+            <choose>
+                <when test="name != null and name != ''">
+                    name like concat(#{name}, '%')
+                </when>
+                <when test="sex != null and sex != 0">
+                    and sex = #{sex}
+                </when>
+            </choose>
+        </where>
+    </select>
 </mapper>
